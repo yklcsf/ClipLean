@@ -1,0 +1,31 @@
+CLIPLEAN
+============
+
+Kullanım
+--------
+1. Bu klasörü kalıcı bir yere taşıyın (örneğin Belgeler). İndirilenler klasöründe
+   bırakmayın; silerseniz kısayollar çalışmaz.
+2. ClipLean.exe dosyasını çift tıklayarak açın.
+3. Videoları ya da klasörleri pencereye sürükleyin. Hepsi bu.
+
+İsterseniz pencerenin altındaki kutularla:
+- Sağ tık "Gönder" menüsüne ekleyebilirsiniz. (Windows 11'de sağ tık >
+  "Daha fazla seçenek göster" > "Gönder" > ClipLean)
+- Masaüstüne kısayol koyabilir, videoları doğrudan o simgenin üzerine
+  bırakabilirsiniz.
+
+Küçültülen videolar nereye gider?
+---------------------------------
+- Bir klasör verdiyseniz:  "Klasör Adı (Küçültülmüş)" adında, yanındaki yeni klasöre.
+- Tek tek video verdiyseniz: videonun yanındaki "Küçültülmüş" klasörüne.
+Orijinal dosyalarınız hiçbir zaman değiştirilmez ya da silinmez.
+
+"Windows bilgisayarınızı korudu" uyarısı
+----------------------------------------
+Program imzalı olmadığı için ilk açılışta bu uyarı çıkabilir.
+"Ek bilgi" > "Yine de çalıştır" diyerek açabilirsiniz.
+
+Lisans
+------
+GPL-3.0. Video işleme için FFmpeg (https://ffmpeg.org) kullanılır; FFmpeg'in
+lisansı _internal\ffmpeg\LICENSE.txt dosyasındadır.

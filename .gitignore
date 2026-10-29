@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+build/
+dist/
+*.spec
+ffmpeg/
+*.zip
+
+# Videolar depoya girmesin
+*.mp4
+*.mkv
+*.mov
+*.avi
+*.webm
