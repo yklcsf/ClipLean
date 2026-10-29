@@ -29,7 +29,7 @@ IGNORED_FILES = {"desktop.ini", "thumbs.db", ".ds_store"}
 PART_SUFFIX = ".part"
 
 # Kodlama ayarları; gerçek ekran kaydı ve telefon videosu üzerinde VMAF ile ölçülerek seçildi.
-# Ekran kaydı: eski HandBrake ayarına göre ~%44 daha küçük, daha yüksek kalite.
+# Ekran kaydı: HandBrake x264 RF30 720p ayarına göre ~%44 daha küçük, daha yüksek kalite.
 # Kamera: 1080p korunuyor; 720p'ye küçültmek aynı boyutta belirgin kalite kaybı veriyordu.
 # CRF 40, HandBrake "Fast 1080p30" ile aynı VMAF'ı üçte bir boyutta veriyor.
 MAX_SHORT_SIDE_SCREEN = 720

@@ -2,7 +2,7 @@
 
 # ClipLean
 
-Windows için tek tıkla video küçültme aracı. Videoları ya da klasörleri pencereye sürükleyin; ClipLean her videoyu modern **AV1** ve **Opus** formatlarıyla yeniden sıkıştırır. Kalite gözle görülür biçimde düşmez, boyut ciddi oranda küçülür. Ekran kayıtlarında küçülme çoğu zaman %95'in üzerindedir.
+Windows için tek tıkla video küçültme aracı. Videoları ya da klasörleri pencereye sürükleyin; ClipLean her videoyu modern **AV1** ve **Opus** formatlarıyla yeniden sıkıştırır. Kalite gözle görülür biçimde düşmez, boyut ciddi oranda küçülür: aşağıdaki ölçümlerde 305 MB'lık bir ekran kaydı 6,4 MB'a, 436 MB'lık bir telefon videosu 51 MB'a indi.
 
 ![Ekran görüntüsü](docs/ekran.png)
 
@@ -18,30 +18,26 @@ Kurulum gerekmez; taşınabilir bir uygulamadır. Kaldırmak için klasörü sil
 
 Pencerenin altındaki kutularla ClipLean'i **sağ tık → Gönder** menüsüne ekleyebilir ya da masaüstüne kısayol koyabilirsiniz. Kısayolun üzerine video bırakmak da işe yarar.
 
-## Eski yöntemle karşılaştırma
+## Ne yapar?
 
-ClipLean, yıllarca kullandığımız HandBrake + PowerShell betiği düzeninin yerine yazıldı.
+- **Ekran kaydı mı kamera görüntüsü mü, kendisi anlar.** Ekran kayıtları daha güçlü sıkıştırılır; telefon ve kamera videolarında detay korunur. Ayar seçmeniz gerekmez.
+- **Orijinallere dokunmaz.** Klasör verildiğinde çıktılar yanındaki `Klasör (Küçültülmüş)` klasörüne, tek tek video verildiğinde `Küçültülmüş` alt klasörüne yazılır.
+- **Klasör yapısını, fotoğrafları ve diğer dosyaları korur.** Dosya tarihleri de aynen kalır.
+- **Daha önce küçülttüklerini atlar.** Aynı klasörü tekrar verebilirsiniz; sadece yeni videolar işlenir.
+- **Yarım dosya bırakmaz.** İşlem durdurulursa ya da bilgisayar kapanırsa bozuk çıktı oluşmaz.
+- **Küçültemiyorsa dokunmaz.** Sonuç orijinalden büyük çıkarsa orijinali aynen kopyalar.
+- **İşlem sürerken bilgisayar uykuya geçmez.** Düşük öncelikte çalıştığı için bilgisayarı kullanmaya devam edebilirsiniz.
+- **Güncellemeleri kendisi kontrol eder.** Açılışta GitHub'a en son sürümü sorar; yeni sürüm varsa pencerede bir bağlantı gösterir. Hiçbir kişisel bilgi gönderilmez.
 
-| | Eski yöntem (HandBrake betiği) | ClipLean |
-|---|---|---|
-| Nasıl kullanılır? | Videolar `source` klasörüne konur, betik çalıştırılır | Pencereye sürükle-bırak ya da sağ tık → Gönder |
-| Kurulum | HandBrakeCLI, ayar dosyası, sabit klasör yolları | Zip'i açmak yeterli |
-| Görüntü formatı | H.264 (2003) | AV1 (2018), aynı kalitede çok daha küçük |
-| Ses | 160 kbps, küçük dosyalarda boyutun üçte ikisi | 48 kbps Opus, konuşma ve müzikte fark edilmez |
-| Ekran kaydı / kamera görüntüsü | Hepsine aynı ayar | Kendisi ayırt eder, ayarı ona göre seçer |
-| Tekrar çalıştırınca | Her şeyi baştan sıkıştırır | Sadece yeni videoları işler |
-| İşlem yarıda kalırsa | Bozuk dosya kalabilir | Yarım dosya bırakmaz |
-| Sonuç orijinalden büyükse | Büyük dosya kalır | Orijinali aynen kopyalar |
-| iPhone videoları (.mov) | Atlanır | Desteklenir |
-| İlerleme | Komut satırı çıktısı | İlerleme çubuğu, kalan süre, özet |
+Desteklenen formatlar: mp4, mov, mkv, webm, avi, wmv, flv, m4v, ts, mts, m2ts, 3gp, mpg.
 
-### Ölçüm
+## HandBrake ile karşılaştırma
 
-İki gerçek video üç yöntemle sıkıştırıldı.
+İki gerçek video, HandBrake'in iki ayarı ve ClipLean ile sıkıştırıldı.
 
 **Ekran kaydı:** 6 dk 56 sn, 720p, 305 MB
 
-| | HandBrake varsayılanı | Eski ayar | **ClipLean** |
+| | HandBrake varsayılan ayarı | HandBrake küçük dosya ayarı | **ClipLean** |
 |---|---|---|---|
 | Dosya boyutu | 13,5 MB | 11,5 MB | **6,4 MB** |
 | Kalite puanı (VMAF) | 96,7 | 94,6 | **96,5** |
@@ -49,27 +45,18 @@ ClipLean, yıllarca kullandığımız HandBrake + PowerShell betiği düzeninin 
 
 **Telefon videosu:** 4 dk 37 sn, 1080p, 436 MB
 
-| | HandBrake varsayılanı | Eski ayar | **ClipLean** |
+| | HandBrake varsayılan ayarı | HandBrake küçük dosya ayarı | **ClipLean** |
 |---|---|---|---|
 | Dosya boyutu | 137,6 MB | 26,7 MB | **51,2 MB** |
 | Kalite puanı (VMAF) | 88,6 | 76,7 | **95,2** |
 | Süre | 2 dk 5 sn | 1 dk 37 sn | 1 dk 49 sn |
 
 - **Kalite puanı (VMAF):** Netflix'in geliştirdiği, insan gözünün algısını taklit eden ölçü. 100, orijinalle birebir aynı demektir; 95 ve üzeri, genel kabule göre çoğu izleyicinin orijinalden ayırt edemeyeceği seviyedir.
-- **HandBrake varsayılanı:** HandBrake'in hazır "Fast 1080p30" ayarı.
-- **Eski ayar:** HandBrake, x264 RF 30, AAC 160 kbps, en fazla 720p (`low_2026` ayar dosyası).
+- **HandBrake varsayılan ayarı:** HandBrake'in hazır "Fast 1080p30" ayarı (x264, RF 22).
+- **HandBrake küçük dosya ayarı:** Dosya boyutunu düşürmek için elle hazırlanmış bir ayar: x264, RF 30, en fazla 720p, AAC 160 kbps.
 - Ölçüm bilgisayarı: AMD Ryzen 5 5600. Sonuçlar videonun içeriğine göre değişir.
 
-Özetle: ekran kayıtlarında ClipLean, HandBrake varsayılanıyla aynı kalitede **yarısından küçük** dosyalar üretir. Telefon videolarında eski ayardan büyük ama çok daha kaliteli, HandBrake varsayılanından ise hem daha kaliteli hem **üçte bir boyutta** dosyalar üretir.
-
-## Ne yapar?
-
-- **Orijinallere dokunmaz.** Klasör verildiğinde çıktılar yanındaki `Klasör (Küçültülmüş)` klasörüne, tek tek video verildiğinde `Küçültülmüş` alt klasörüne yazılır.
-- **Klasör yapısını, fotoğrafları ve diğer dosyaları korur.** Dosya tarihleri de aynen kalır.
-- **İşlem sürerken bilgisayar uykuya geçmez.** Düşük öncelikte çalıştığı için bilgisayarı kullanmaya devam edebilirsiniz.
-- **Güncellemeleri kendisi kontrol eder.** Açılışta GitHub'a en son sürümü sorar; yeni sürüm varsa pencerede bir bağlantı gösterir. Hiçbir kişisel bilgi gönderilmez.
-
-Desteklenen formatlar: mp4, mov, mkv, webm, avi, wmv, flv, m4v, ts, mts, m2ts, 3gp, mpg.
+**Özetle:** Ekran kayıtlarında ClipLean, HandBrake'in varsayılan ayarıyla aynı kalitede yarısından küçük dosyalar üretir. Telefon videolarında HandBrake'in varsayılan ayarından hem daha kaliteli hem üçte bir boyutta dosyalar üretir. HandBrake'i küçük dosya için zorlamak ise boyutu düşürür ama kaliteyi belirgin şekilde bozar.
 
 ## Teknik ayrıntılar
 
